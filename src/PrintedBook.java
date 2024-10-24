@@ -6,11 +6,11 @@ public class PrintedBook extends Book {
 
     private static ArrayList<PrintedBook> lastThreeBooks = new ArrayList<PrintedBook>();
 
-    public PrintedBook() {
+    public PrintedBook(String title, String author, String genre, double cost, int totalPages) {
+        super(title, author, genre, cost);
+        this.totalPages = totalPages;
 
     }
-
-
 
     public double getCost() {
         return 0.0;

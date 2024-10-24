@@ -2,15 +2,14 @@ import java.util.ArrayList;
 
 public class AudioBook extends Book {
 
-    private int totalLength;
+    private double totalLength;
 
     private static ArrayList<PrintedBook> lastThreeBooks = new ArrayList<PrintedBook>();
 
-    public AudioBook() {
-
+    public AudioBook(String title, String author, String genre, double cost, double totalLength) {
+        super(title, author, genre, cost);
+        this.totalLength = totalLength;
     }
-
-
 
     public double getCost() {
         return 0.0;
