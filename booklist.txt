@@ -1,0 +1,3 @@
+Harry Potter,J.K. Rowling,Printed,1200,340
+Hobbit,R. Tolkien,Printed,800,300
+Prejudice,J. Austen,Audio,1000,780
