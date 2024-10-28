@@ -28,11 +28,6 @@ public class AudioBook extends Book {
         return 0;
     }
 
-    public double getTotalCost() {
-        // Computes average costs of all books
-        return 0.0;
-    }
-
     public void storeBook() {
         // Adds book to lastThreeBooks arraylist
         // Adds book to .txt file

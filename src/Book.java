@@ -18,8 +18,15 @@ public abstract class Book implements BookInterface {
         this.cost = cost;
     }
 
+    @Override
     public double getTotalCost() {
-        return 0.0;
+        double totalCost = 0.0;
+
+        for (Book book : bookList) {
+            totalCost += book.cost;
+        }
+
+        return totalCost;
     }
 
     public abstract double getCost();
