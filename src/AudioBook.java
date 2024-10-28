@@ -16,7 +16,19 @@ public class AudioBook extends Book {
     }
 
     public static double getAverageLength() {
-        return 0.0;
+        ArrayList<Book> bookList = Book.getBookList();
+
+        int totalAudioBooks = 0;
+        double totalLength = 0;
+
+        for (Book book : bookList) {
+            if (book instanceof AudioBook) {
+                totalAudioBooks++;
+                totalLength += ((AudioBook) book).totalLength;
+            }
+        }
+
+        return totalLength / totalAudioBooks;
     }
 
     public static void displayLastThreeBooks() {

@@ -18,7 +18,19 @@ public class PrintedBook extends Book {
 
 
     public static double getAveragePages() {
-        return 0.0;
+        ArrayList<Book> bookList = Book.getBookList();
+
+        int totalPrintedBooks = 0;
+        int totalPages = 0;
+
+        for (Book book : bookList) {
+            if (book instanceof PrintedBook) {
+                totalPrintedBooks++;
+                totalPages += ((PrintedBook) book).totalPages;
+            }
+        }
+
+        return (double) totalPages / totalPrintedBooks;
     }
 
     public static void displayLastThreeBooks() {
