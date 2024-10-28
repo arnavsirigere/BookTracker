@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Book implements BookInterface {
-    protected String title;
-    protected String author;
-    protected String genre;
-    protected double cost;
+    private String title;
+    private String author;
+    private String genre;
+    private double cost;
 
     protected static ArrayList<Book> bookList = new ArrayList<Book>();
 
@@ -51,7 +51,7 @@ public abstract class Book implements BookInterface {
                 } else {
                     double totalLength = Double.parseDouble(bookData[4]);
                     // Polymorphism
-                    book = new AudioBook(title, author, genre, cost, totalLength); // Polymorphism
+                    book = new AudioBook(title, author, genre, cost, totalLength);
                 }
 
                 bookList.add(book);
