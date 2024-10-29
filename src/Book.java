@@ -33,6 +33,10 @@ public abstract class Book implements BookInterface {
 
     public abstract void storeBook();
 
+    public double getBookCost() {
+        return cost;
+    }
+
     public static ArrayList<Book> getBookList() {
         return bookList;
     }

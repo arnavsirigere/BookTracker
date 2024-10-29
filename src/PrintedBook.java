@@ -13,9 +13,17 @@ public class PrintedBook extends Book {
     }
 
     public double getCost() {
-        return 0.0;
-    }
+        ArrayList<Book> bookList = Book.getBookList();
+        double totalCost = 0.0;
 
+        for (Book book : bookList) {
+            if (book instanceof PrintedBook) {
+                totalCost += book.getBookCost();
+            }
+        }
+
+        return totalCost;
+    }
 
     public static double getAveragePages() {
         ArrayList<Book> bookList = Book.getBookList();

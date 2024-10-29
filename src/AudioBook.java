@@ -12,7 +12,16 @@ public class AudioBook extends Book {
     }
 
     public double getCost() {
-        return 0.0;
+        ArrayList<Book> bookList = Book.getBookList();
+        double totalCost = 0.0;
+
+        for (Book book : bookList) {
+            if (book instanceof AudioBook) {
+                totalCost += book.getBookCost();
+            }
+        }
+
+        return totalCost;
     }
 
     public static double getAverageLength() {
