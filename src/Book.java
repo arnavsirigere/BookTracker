@@ -11,11 +11,10 @@ public abstract class Book implements BookInterface {
 
     protected static ArrayList<Book> bookList = new ArrayList<Book>();
 
-    public Book(String title, String author, String genre, double cost) {
+    public Book(String title, String author, String genre) {
         this.title = title;
         this.author = author;
         this.genre = genre;
-        this.cost = cost;
     }
 
     @Override
@@ -28,6 +27,12 @@ public abstract class Book implements BookInterface {
 
         return totalCost;
     }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
+
+    public abstract void calculateCost();
 
     public abstract double getCost();
 
@@ -51,18 +56,17 @@ public abstract class Book implements BookInterface {
                 String title = bookData[0];
                 String author = bookData[1];
                 String genre = bookData[2];
-                double cost = Double.parseDouble(bookData[3]);
 
                 Book book;
 
                 if (genre.equals("Printed")) {
-                    int totalPages = Integer.parseInt(bookData[4]);
+                    int totalPages = Integer.parseInt(bookData[3]);
                     // Polymorphism
-                    book = new PrintedBook(title, author, genre, cost, totalPages);
+                    book = new PrintedBook(title, author, genre, totalPages);
                 } else {
-                    double totalLength = Double.parseDouble(bookData[4]);
+                    double totalLength = Double.parseDouble(bookData[3]);
                     // Polymorphism
-                    book = new AudioBook(title, author, genre, cost, totalLength);
+                    book = new AudioBook(title, author, genre, totalLength);
                 }
 
                 bookList.add(book);

@@ -1,6 +1,6 @@
-Harry Potter,J.K. Rowling,Printed,30,340
-Hobbit,J.R.R. Tolkien,Printed,25,300
-Prejudice,J. Austen,Audio,15,780
-Ulysses,James Joyce,Printed,20,730
-Becoming,Michelle Obama,Audio,22,1140
-1984,George Orwell,Audio,18,660
+Harry Potter,J.K. Rowling,Printed,340
+Hobbit,J.R.R. Tolkien,Printed,300
+Prejudice,J. Austen,Audio,780
+Ulysses,James Joyce,Printed,730
+Becoming,Michelle Obama,Audio,1140
+1984,George Orwell,Audio,660

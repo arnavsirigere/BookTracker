@@ -2,14 +2,21 @@ import java.util.ArrayList;
 
 public class PrintedBook extends Book {
 
+    public static final double costPerPage = 10;
+
     private int totalPages;
 
     private static ArrayList<PrintedBook> lastThreeBooks = new ArrayList<PrintedBook>();
 
-    public PrintedBook(String title, String author, String genre, double cost, int totalPages) {
-        super(title, author, genre, cost);
+    public PrintedBook(String title, String author, String genre, int totalPages) {
+        super(title, author, genre);
         this.totalPages = totalPages;
+        calculateCost();
+    }
 
+    public void calculateCost() {
+        double cost = totalPages * costPerPage;
+        setCost(cost);
     }
 
     public double getCost() {

@@ -2,13 +2,21 @@ import java.util.ArrayList;
 
 public class AudioBook extends Book {
 
+    public static final double costPerMinute = PrintedBook.costPerPage / 2;
+
     private double totalLength;
 
     private static ArrayList<PrintedBook> lastThreeBooks = new ArrayList<PrintedBook>();
 
-    public AudioBook(String title, String author, String genre, double cost, double totalLength) {
-        super(title, author, genre, cost);
+    public AudioBook(String title, String author, String genre, double totalLength) {
+        super(title, author, genre);
         this.totalLength = totalLength;
+        calculateCost();
+    }
+
+    public void calculateCost() {
+        double cost = totalLength * costPerMinute;
+        setCost(cost);
     }
 
     public double getCost() {
