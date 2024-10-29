@@ -16,6 +16,17 @@ public class BookTracker {
 
             switch(option) {
                 case 1: {
+                    System.out.print("Please enter the title of the book: ");
+                    String title = scanner.nextLine();
+
+                    System.out.print("Please enter the author of the book: ");
+                    String author = scanner.nextLine();
+
+                    int totalPages = getValidInteger("Please enter the total pages in the book: ");
+
+                    PrintedBook newBook = new PrintedBook(title, author, "Printed", totalPages);
+                    newBook.storeBook();
+
                     break;
                 }
 
@@ -23,6 +34,7 @@ public class BookTracker {
                     return;
                 }
             }
+            System.out.println("");
         }
     }
 
@@ -50,7 +62,30 @@ public class BookTracker {
             invalidInputProvided = true;
         }
 
+        scanner.nextLine();
+
         return option;
+    }
+
+    public static int getValidInteger(String prompt) {
+        int positiveInt = -1;
+
+        while (positiveInt <= 0) {
+            System.out.print(prompt);
+
+            if (scanner.hasNextInt()) {
+                positiveInt = scanner.nextInt();
+                if (positiveInt > 0) {
+                    return positiveInt;
+                }
+            } else {
+                scanner.next();
+            }
+
+            System.out.println("That is not a valid input. Please try again.");
+        }
+
+        return 0;
     }
 
     public static void printMenu() {
@@ -58,7 +93,7 @@ public class BookTracker {
         System.out.println("                BOOK TRACKING APPLICATION        ");
         System.out.println("=================================================");
         System.out.println("Available options:");
-        System.out.println("1. Do stuff");
+        System.out.println("1. Add a New Printed Book");
         System.out.println("2. Exit");
         System.out.println("=================================================\n");
     }
