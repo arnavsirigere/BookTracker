@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class AudioBook extends Book {
@@ -6,7 +8,7 @@ public class AudioBook extends Book {
 
     private double totalLength;
 
-    private static ArrayList<PrintedBook> lastThreeBooks = new ArrayList<PrintedBook>();
+    private static ArrayList<AudioBook> lastThreeBooks = new ArrayList<AudioBook>();
 
     public AudioBook(String title, String author, String genre, double totalLength) {
         super(title, author, genre);
@@ -58,9 +60,22 @@ public class AudioBook extends Book {
     }
 
     public void storeBook() {
-        // Adds book to lastThreeBooks arraylist
-        // Adds book to .txt file
+        try {
+            if (lastThreeBooks.size() == 3) {
+                lastThreeBooks.removeFirst();
+            }
+
+            lastThreeBooks.add(this);
+            Book.getBookList().add(this);
+
+            FileWriter fileWriter = new FileWriter("booklist.txt", true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+            printWriter.print(String.format("\n%s,%s,Audio,%s", getTitle(), getAuthor(), totalLength));
+
+            printWriter.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
-
-
 }

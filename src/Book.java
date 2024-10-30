@@ -42,6 +42,14 @@ public abstract class Book implements BookInterface {
         return cost;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
     public static ArrayList<Book> getBookList() {
         return bookList;
     }

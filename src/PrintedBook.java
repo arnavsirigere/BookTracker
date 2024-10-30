@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class PrintedBook extends Book {
@@ -58,9 +60,22 @@ public class PrintedBook extends Book {
     }
 
     public void storeBook() {
-        // Adds book to lastThreeBooks arraylist
-        // Adds book to .txt file
+        try {
+            if (lastThreeBooks.size() == 3) {
+                lastThreeBooks.removeFirst();
+            }
+
+            lastThreeBooks.add(this);
+            Book.getBookList().add(this);
+
+            FileWriter fileWriter = new FileWriter("booklist.txt", true);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+            printWriter.print(String.format("\n%s,%s,Printed,%s", getTitle(), getAuthor(), totalPages));
+
+            printWriter.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
-
-
 }
