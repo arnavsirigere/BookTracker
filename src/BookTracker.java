@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class BookTracker {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final int totalMenuOptions = 3;
+    private static final int totalMenuOptions = 5;
 
     public static void main(String[] args) {
         Book.readBookList();
@@ -46,6 +46,20 @@ public class BookTracker {
                 }
 
                 case 3: {
+                    PrintedBook printedBook = findPrintedBook();
+                    int totalPrintedBooks = printedBook.getNumberOfBooks();
+                    System.out.printf("You have completed %d printed book%s.\n", totalPrintedBooks, totalPrintedBooks == 1 ? "" : "s");
+                    break;
+                }
+
+                case 4: {
+                    AudioBook audioBook = findAudioBook();
+                    int totalAudioBooks = audioBook.getNumberOfBooks();
+                    System.out.printf("You have completed %d audio book%s.\n", totalAudioBooks, totalAudioBooks == 1 ? "" : "s");
+                    break;
+                }
+
+                case 5: {
                     return;
                 }
             }
@@ -126,6 +140,26 @@ public class BookTracker {
         return 0;
     }
 
+    public static PrintedBook findPrintedBook() {
+        for (Book book : Book.getBookList()) {
+            if (book instanceof PrintedBook) {
+                return (PrintedBook) book;
+            }
+        }
+
+        return new PrintedBook("", "", "Printed", 0);
+    }
+
+    public static AudioBook findAudioBook() {
+        for (Book book : Book.getBookList()) {
+            if (book instanceof AudioBook) {
+                return (AudioBook) book;
+            }
+        }
+
+        return new AudioBook("", "", "Audio", 0);
+    }
+
     public static void printMenu() {
         System.out.println("=================================================");
         System.out.println("                BOOK TRACKING APPLICATION        ");
@@ -133,7 +167,9 @@ public class BookTracker {
         System.out.println("Available options:");
         System.out.println("1. Add a New Printed Book");
         System.out.println("2. Add a New Audio Book");
-        System.out.println("3. Exit");
+        System.out.println("3. View Total Printed Books Completed");
+        System.out.println("4. View Total Audio Books Completed");
+        System.out.println("5. Exit");
         System.out.println("=================================================\n");
     }
 }

@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PrintedBook extends Book {
@@ -55,8 +56,17 @@ public class PrintedBook extends Book {
     }
 
     public int getNumberOfBooks() {
-        // Returns number of printed books
-        return 0;
+        ArrayList<Book> bookList = Book.getBookList();
+
+        int printedBookCount = 0;
+
+        for (Book book : bookList) {
+            if (book instanceof PrintedBook) {
+                printedBookCount++;
+            }
+        }
+
+        return printedBookCount;
     }
 
     public void storeBook() {

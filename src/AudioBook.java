@@ -55,8 +55,17 @@ public class AudioBook extends Book {
     }
 
     public int getNumberOfBooks() {
-        // Returns number of printed books
-        return 0;
+        ArrayList<Book> bookList = Book.getBookList();
+
+        int audioBookCount = 0;
+
+        for (Book book : bookList) {
+            if (book instanceof AudioBook) {
+                audioBookCount++;
+            }
+        }
+
+        return audioBookCount;
     }
 
     public void storeBook() {
