@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class BookTracker {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final int totalMenuOptions = 2;
+    private static final int totalMenuOptions = 3;
 
     public static void main(String[] args) {
         Book.readBookList();
@@ -31,6 +31,21 @@ public class BookTracker {
                 }
 
                 case 2: {
+                    System.out.print("Please enter the title of the book: ");
+                    String title = scanner.nextLine();
+
+                    System.out.print("Please enter the author of the book: ");
+                    String author = scanner.nextLine();
+
+                    double totalLength = getValidDouble("Please enter the total length of the audio book: ");
+
+                    AudioBook newBook = new AudioBook(title, author, "Audio", totalLength);
+                    newBook.storeBook();
+
+                    break;
+                }
+
+                case 3: {
                     return;
                 }
             }
@@ -88,13 +103,37 @@ public class BookTracker {
         return 0;
     }
 
+    public static double getValidDouble(String prompt) {
+        double positiveDouble = -1.0;
+
+        System.out.println(positiveDouble);
+
+        while (positiveDouble <= 0) {
+            System.out.print(prompt);
+
+            if (scanner.hasNextDouble()) {
+                positiveDouble = scanner.nextDouble();
+                if (positiveDouble > 0) {
+                    return positiveDouble;
+                }
+            } else {
+                scanner.next();
+            }
+
+            System.out.println("That is not a valid input. Please try again.");
+        }
+
+        return 0;
+    }
+
     public static void printMenu() {
         System.out.println("=================================================");
         System.out.println("                BOOK TRACKING APPLICATION        ");
         System.out.println("=================================================");
         System.out.println("Available options:");
         System.out.println("1. Add a New Printed Book");
-        System.out.println("2. Exit");
+        System.out.println("2. Add a New Audio Book");
+        System.out.println("3. Exit");
         System.out.println("=================================================\n");
     }
 }
