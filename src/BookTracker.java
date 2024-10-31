@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class BookTracker {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final int totalMenuOptions = 5;
+    private static final int totalMenuOptions = 8;
 
     public static void main(String[] args) {
         Book.readBookList();
@@ -46,24 +46,42 @@ public class BookTracker {
                 }
 
                 case 3: {
+                    Book book = Book.getBookList().getFirst();
+                    System.out.printf("The total cost of all books is $%.2f\n", book.getTotalCost());
+                    break;
+                }
+
+                case 4: {
+                    PrintedBook printedBook = findPrintedBook();
+                    System.out.printf("The total cost of all printed books is $%.2f\n", printedBook.getCost());
+                    break;
+                }
+
+                case 5: {
+                    AudioBook audioBook = findAudioBook();
+                    System.out.printf("The total cost of all audio books is $%.2f\n", audioBook.getCost());
+                    break;
+                }
+
+                case 6: {
                     PrintedBook printedBook = findPrintedBook();
                     int totalPrintedBooks = printedBook.getNumberOfBooks();
                     System.out.printf("You have completed %d printed book%s.\n", totalPrintedBooks, totalPrintedBooks == 1 ? "" : "s");
                     break;
                 }
 
-                case 4: {
+                case 7: {
                     AudioBook audioBook = findAudioBook();
                     int totalAudioBooks = audioBook.getNumberOfBooks();
                     System.out.printf("You have completed %d audio book%s.\n", totalAudioBooks, totalAudioBooks == 1 ? "" : "s");
                     break;
                 }
 
-                case 5: {
+                case 8: {
                     return;
                 }
             }
-            System.out.println("");
+            System.out.println();
         }
     }
 
@@ -120,8 +138,6 @@ public class BookTracker {
     public static double getValidDouble(String prompt) {
         double positiveDouble = -1.0;
 
-        System.out.println(positiveDouble);
-
         while (positiveDouble <= 0) {
             System.out.print(prompt);
 
@@ -167,9 +183,12 @@ public class BookTracker {
         System.out.println("Available options:");
         System.out.println("1. Add a New Printed Book");
         System.out.println("2. Add a New Audio Book");
-        System.out.println("3. View Total Printed Books Completed");
-        System.out.println("4. View Total Audio Books Completed");
-        System.out.println("5. Exit");
+        System.out.println("3. View Total Cost of all Books");
+        System.out.println("4. View Total Cost of all Printed Books");
+        System.out.println("5. View Total Cost of all Audio Books");
+        System.out.println("6. View Total Printed Books Completed");
+        System.out.println("7. View Total Audio Books Completed");
+        System.out.println("8. Exit");
         System.out.println("=================================================\n");
     }
 }
