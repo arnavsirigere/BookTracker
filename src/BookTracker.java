@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class BookTracker {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final int totalMenuOptions = 8;
+    private static final int totalMenuOptions = 10;
 
     public static void main(String[] args) {
         Book.readBookList();
@@ -78,6 +78,17 @@ public class BookTracker {
                 }
 
                 case 8: {
+                    System.out.printf("The average page count of all printed books is %.2f\n", PrintedBook.getAveragePages());
+                    break;
+                }
+
+                case 9: {
+                    System.out.printf("The average duration of all audio books is %.2f minutes.\n", AudioBook.getAverageLength());
+                    break;
+                }
+
+                case 10: {
+                    System.out.println("Exiting Menu . . .");
                     return;
                 }
             }
@@ -188,7 +199,9 @@ public class BookTracker {
         System.out.println("5. View Total Cost of all Audio Books");
         System.out.println("6. View Total Printed Books Completed");
         System.out.println("7. View Total Audio Books Completed");
-        System.out.println("8. Exit");
+        System.out.println("8. View Average Page Count of all Printed Books");
+        System.out.println("9. View Average Duration of all Audio Books");
+        System.out.println("10. Exit");
         System.out.println("=================================================\n");
     }
 }
