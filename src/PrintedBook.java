@@ -1,6 +1,6 @@
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class PrintedBook extends Book {
@@ -52,7 +52,9 @@ public class PrintedBook extends Book {
     }
 
     public static void displayLastThreeBooks() {
-
+        for (int i = 0; i < lastThreeBooks.size(); i++) {
+            System.out.println(lastThreeBooks.get(i).toString(i + 1));
+        }
     }
 
     public int getNumberOfBooks() {
@@ -87,5 +89,24 @@ public class PrintedBook extends Book {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public String toString(int num) {
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
+        String formattedAmount = currencyFormatter.format(getBookCost());
+
+        return String.format(
+                "Book %d:\n" +
+                        "  Title: %s\n" +
+                        "  Author: %s\n" +
+                        "  Genre: Printed 📚\n" +
+                        "  Pages: %d\n" +
+                        "  Cost: %s\n",
+                num, getTitle(), getAuthor(), totalPages, formattedAmount
+        );
+    }
+
+    public static ArrayList<PrintedBook> getLastThreeBooks() {
+        return lastThreeBooks;
     }
 }

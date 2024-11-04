@@ -1,5 +1,6 @@
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 public class AudioBook extends Book {
@@ -51,7 +52,9 @@ public class AudioBook extends Book {
     }
 
     public static void displayLastThreeBooks() {
-
+        for (int i = 0; i < lastThreeBooks.size(); i++) {
+            System.out.println(lastThreeBooks.get(i).toString(i + 1));
+        }
     }
 
     public int getNumberOfBooks() {
@@ -86,5 +89,24 @@ public class AudioBook extends Book {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public String toString(int num) {
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance();
+        String formattedAmount = currencyFormatter.format(getBookCost());
+
+        return String.format(
+                "Book %d:\n" +
+                        "  Title: %s\n" +
+                        "  Author: %s\n" +
+                        "  Genre: Audio 🎧\n" +
+                        "  Length: %.2f\n" +
+                        "  Cost: %s\n",
+                num, getTitle(), getAuthor(), totalLength, formattedAmount
+        );
+    }
+
+    public static ArrayList<AudioBook> getLastThreeBooks() {
+        return lastThreeBooks;
     }
 }

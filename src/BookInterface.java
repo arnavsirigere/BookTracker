@@ -6,8 +6,16 @@ public interface BookInterface {
 
     double getTotalCost();
 
-    default void displayLast6Books() {
-        ArrayList<Book> books = Book.getBookList(); // Assuming a method to get the static list of books
+    default void displayLastSixBooks() {
+        ArrayList<Book> bookList = Book.getBookList();
+        for (int i = bookList.size() - 6; i < bookList.size(); i++) {
+            Book book = bookList.get(i);
+            if (book instanceof PrintedBook) {
+                System.out.println(((PrintedBook) book).toString(i + 1));
+            } else {
+                System.out.println(((AudioBook) book).toString(i + 1));
+            }
+        }
 
     }
 }

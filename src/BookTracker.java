@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class BookTracker {
 
     private static final Scanner scanner = new Scanner(System.in);
-    private static final int totalMenuOptions = 10;
+    private static final int totalMenuOptions = 13;
 
     public static void main(String[] args) {
         Book.readBookList();
@@ -46,48 +46,66 @@ public class BookTracker {
                 }
 
                 case 3: {
+                    System.out.println("Here are the details of the six most recently completed books:\n");
+                    Book.getBookList().getFirst().displayLastSixBooks();
+                    break;
+                }
+
+                case 4: {
+                    System.out.println("Here are the details of the three most recently completed printed books:\n");
+                    PrintedBook.displayLastThreeBooks();
+                    break;
+                }
+
+                case 5: {
+                    System.out.println("Here are the details of the three most recently completed audio books:\n");
+                    AudioBook.displayLastThreeBooks();
+                    break;
+                }
+
+                case 6: {
                     Book book = Book.getBookList().getFirst();
                     System.out.printf("The total cost of all books is $%.2f\n", book.getTotalCost());
                     break;
                 }
 
-                case 4: {
+                case 7: {
                     PrintedBook printedBook = findPrintedBook();
                     System.out.printf("The total cost of all printed books is $%.2f\n", printedBook.getCost());
                     break;
                 }
 
-                case 5: {
+                case 8: {
                     AudioBook audioBook = findAudioBook();
                     System.out.printf("The total cost of all audio books is $%.2f\n", audioBook.getCost());
                     break;
                 }
 
-                case 6: {
+                case 9: {
                     PrintedBook printedBook = findPrintedBook();
                     int totalPrintedBooks = printedBook.getNumberOfBooks();
                     System.out.printf("You have completed %d printed book%s.\n", totalPrintedBooks, totalPrintedBooks == 1 ? "" : "s");
                     break;
                 }
 
-                case 7: {
+                case 10: {
                     AudioBook audioBook = findAudioBook();
                     int totalAudioBooks = audioBook.getNumberOfBooks();
                     System.out.printf("You have completed %d audio book%s.\n", totalAudioBooks, totalAudioBooks == 1 ? "" : "s");
                     break;
                 }
 
-                case 8: {
+                case 11: {
                     System.out.printf("The average page count of all printed books is %.2f\n", PrintedBook.getAveragePages());
                     break;
                 }
 
-                case 9: {
+                case 12: {
                     System.out.printf("The average duration of all audio books is %.2f minutes.\n", AudioBook.getAverageLength());
                     break;
                 }
 
-                case 10: {
+                case 13: {
                     System.out.println("Exiting Menu . . .");
                     return;
                 }
@@ -194,14 +212,17 @@ public class BookTracker {
         System.out.println("Available options:");
         System.out.println("1. Add a New Printed Book");
         System.out.println("2. Add a New Audio Book");
-        System.out.println("3. View Total Cost of all Books");
-        System.out.println("4. View Total Cost of all Printed Books");
-        System.out.println("5. View Total Cost of all Audio Books");
-        System.out.println("6. View Total Printed Books Completed");
-        System.out.println("7. View Total Audio Books Completed");
-        System.out.println("8. View Average Page Count of all Printed Books");
-        System.out.println("9. View Average Duration of all Audio Books");
-        System.out.println("10. Exit");
+        System.out.println("3. View Last Six Books");
+        System.out.println("4. View Last Three Printed Books");
+        System.out.println("5. View Last Three Audio Books");
+        System.out.println("6. View Total Cost of all Books");
+        System.out.println("7. View Total Cost of all Printed Books");
+        System.out.println("8. View Total Cost of all Audio Books");
+        System.out.println("9. View Total Printed Books Completed");
+        System.out.println("10. View Total Audio Books Completed");
+        System.out.println("11. View Average Page Count of all Printed Books");
+        System.out.println("12. View Average Duration of all Audio Books");
+        System.out.println("13. Exit");
         System.out.println("=================================================\n");
     }
 }

@@ -71,10 +71,12 @@ public abstract class Book implements BookInterface {
                     int totalPages = Integer.parseInt(bookData[3]);
                     // Polymorphism
                     book = new PrintedBook(title, author, genre, totalPages);
+                    PrintedBook.getLastThreeBooks().add((PrintedBook) book);
                 } else {
                     double totalLength = Double.parseDouble(bookData[3]);
                     // Polymorphism
                     book = new AudioBook(title, author, genre, totalLength);
+                    AudioBook.getLastThreeBooks().add((AudioBook) book);
                 }
 
                 bookList.add(book);
