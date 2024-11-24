@@ -2,22 +2,21 @@ import java.util.Scanner;
 
 public class BookTracker {
 
-    private static final Scanner scanner = new Scanner(System.in); // Scanner for user input
-    private static final int totalMenuOptions = 13; // Total number of menu options
+    private static final Scanner scanner = new Scanner(System.in); // Encapsulation: Scanner for user input
+    private static final int totalMenuOptions = 13; // Constant for the number of menu options
 
     public static void main(String[] args) {
-        // Initialize book list by reading from a file or other data source
+        // Encapsulation: Initialize the book list by reading from a file
         Book.readBookList();
 
-        // Print the menu for user interaction
+        // Display the main menu for user interaction
         printMenu();
 
-        // Main loop for handling user inputs and menu options
+        // Main loop for handling user actions
         while (true) {
-            // Get the user's selected menu option
-            int option = getOption();
+            int option = getOption(); // Get user's menu choice
 
-            // Handle the selected menu option
+            // Polymorphism: Dynamically handles different menu actions
             switch(option) {
                 case 1: { // Add a new printed book
                     System.out.print("Please enter the title of the book: ");
@@ -28,9 +27,9 @@ public class BookTracker {
 
                     int totalPages = getValidInteger("Please enter the total pages in the book: ");
 
-                    // Create a new printed book and store it
+                    // Create a new PrintedBook instance and store it
                     PrintedBook newBook = new PrintedBook(title, author, "Printed", totalPages);
-                    newBook.storeBook();
+                    newBook.storeBook(); // Encapsulation: Manage book storage
                     break;
                 }
 
@@ -43,27 +42,27 @@ public class BookTracker {
 
                     double totalLength = getValidDouble("Please enter the total length of the audio book: ");
 
-                    // Create a new audio book and store it
+                    // Create a new AudioBook instance and store it
                     AudioBook newBook = new AudioBook(title, author, "Audio", totalLength);
-                    newBook.storeBook();
+                    newBook.storeBook(); // Encapsulation: Manage book storage
                     break;
                 }
 
                 case 3: { // Display last six completed books
                     System.out.println("Here are the details of the six most recently completed books:\n");
-                    Book.getBookList().getFirst().displayLastSixBooks();
+                    Book.getBookList().getFirst().displayLastSixBooks(); // Polymorphism: Shared behavior
                     break;
                 }
 
                 case 4: { // Display last three completed printed books
                     System.out.println("Here are the details of the three most recently completed printed books:\n");
-                    PrintedBook.displayLastThreeBooks();
+                    PrintedBook.displayLastThreeBooks(); // Static method specific to PrintedBook
                     break;
                 }
 
                 case 5: { // Display last three completed audio books
                     System.out.println("Here are the details of the three most recently completed audio books:\n");
-                    AudioBook.displayLastThreeBooks();
+                    AudioBook.displayLastThreeBooks(); // Static method specific to AudioBook
                     break;
                 }
 
@@ -74,25 +73,25 @@ public class BookTracker {
                 }
 
                 case 7: { // Display total cost of all printed books
-                    PrintedBook printedBook = findPrintedBook();
+                    PrintedBook printedBook = findPrintedBook(); // Find a PrintedBook instance
                     System.out.printf("The total cost of all printed books is $%.2f\n", printedBook.getCost());
                     break;
                 }
 
                 case 8: { // Display total cost of all audio books
-                    AudioBook audioBook = findAudioBook();
+                    AudioBook audioBook = findAudioBook(); // Find an AudioBook instance
                     System.out.printf("The total cost of all audio books is $%.2f\n", audioBook.getCost());
                     break;
                 }
 
-                case 9: { // Display total number of printed books completed
+                case 9: { // Display total number of printed books
                     PrintedBook printedBook = findPrintedBook();
                     int totalPrintedBooks = printedBook.getNumberOfBooks();
                     System.out.printf("You have completed %d printed book%s.\n", totalPrintedBooks, totalPrintedBooks == 1 ? "" : "s");
                     break;
                 }
 
-                case 10: { // Display total number of audio books completed
+                case 10: { // Display total number of audio books
                     AudioBook audioBook = findAudioBook();
                     int totalAudioBooks = audioBook.getNumberOfBooks();
                     System.out.printf("You have completed %d audio book%s.\n", totalAudioBooks, totalAudioBooks == 1 ? "" : "s");
@@ -111,14 +110,14 @@ public class BookTracker {
 
                 case 13: { // Exit the program
                     System.out.println("Exiting Menu . . .");
-                    return;
+                    return; // Exit the loop and end the program
                 }
             }
             System.out.println();
         }
     }
 
-    // Get a valid menu option from the user
+    // Encapsulation: Method to get a valid menu option from the user
     public static int getOption() {
         int option = -1;
         boolean invalidInputProvided = false;
@@ -147,7 +146,7 @@ public class BookTracker {
         return option;
     }
 
-    // Get a valid positive integer from the user
+    // Encapsulation: Method to get a valid positive integer from the user
     public static int getValidInteger(String prompt) {
         int positiveInt = -1;
 
@@ -169,7 +168,7 @@ public class BookTracker {
         return 0;
     }
 
-    // Get a valid positive double from the user
+    // Encapsulation: Method to get a valid positive double from the user
     public static double getValidDouble(String prompt) {
         double positiveDouble = -1.0;
 
@@ -191,27 +190,27 @@ public class BookTracker {
         return 0;
     }
 
-    // Find the first printed book in the list
+    // Polymorphism: Method to find the first PrintedBook in the list
     public static PrintedBook findPrintedBook() {
         for (Book book : Book.getBookList()) {
-            if (book instanceof PrintedBook) {
+            if (book instanceof PrintedBook) { // Dynamic type checking
                 return (PrintedBook) book;
             }
         }
         return new PrintedBook("", "", "Printed", 0);
     }
 
-    // Find the first audio book in the list
+    // Polymorphism: Method to find the first AudioBook in the list
     public static AudioBook findAudioBook() {
         for (Book book : Book.getBookList()) {
-            if (book instanceof AudioBook) {
+            if (book instanceof AudioBook) { // Dynamic type checking
                 return (AudioBook) book;
             }
         }
         return new AudioBook("", "", "Audio", 0);
     }
 
-    // Print the menu to the console
+    // Display the application menu
     public static void printMenu() {
         System.out.println("=================================================");
         System.out.println("                BOOK TRACKING APPLICATION        ");
