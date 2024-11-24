@@ -4,3 +4,5 @@ Prejudice,J. Austen,Audio,780
 Ulysses,James Joyce,Printed,730
 Becoming,Michelle Obama,Audio,1140
 1984,George Orwell,Audio,660
+The Pearl,John Steinbeck,Printed,200
+The Harry Potter,J. K. Rowling,Audio,300.0
